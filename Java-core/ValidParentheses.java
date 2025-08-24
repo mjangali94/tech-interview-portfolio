@@ -52,16 +52,21 @@ class ValidParentheses {
     public boolean isValid(String s) {
         List<Character> input = new ArrayList<Character>();
         char[] chars= s.toCharArray();
+        if(chars.length == 1)
+            return false;
         for(char c:chars){
             if(c == '(' || c == '[' || c == '{')
                 input.add(c);
-            else if (c==')' && input.get(input.size() - 1) == '(' || 
-                     c==']' && input.get(input.size() - 1) == '[' ||
-                     c=='}' && input.get(input.size() - 1) == '{')
+            else if (c==')' && (input.size()!=0 && input.get(input.size() - 1)== '(')  || 
+                     c==']' && (input.size()!=0 && input.get(input.size() - 1)== '[')  ||
+                     c=='}' && (input.size()!=0 && input.get(input.size() - 1)== '{'))
                 input.remove(input.size() - 1);
             else
                 return false;
         }
+        if (input.size() != 0)
+            return false;
+
         return true;
     }
 }
