@@ -68,8 +68,8 @@ project-1/
 ## ⚙️ Quick Start
 
 1. **Clone the repository**  
-   `git clone https://github.com/mjangali94/fastapi-portfolio-backend.git`  
-   `cd fastapi-portfolio-backend`
+   `git clone https://github.com/mjangali94/tech-interview-portfolio.git`  
+   `cd fastAPI/project-1`
 
 2. **Create & activate virtualenv**  
    `python3 -m venv .venv`  
