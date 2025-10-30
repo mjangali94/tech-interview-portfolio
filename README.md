@@ -1,10 +1,9 @@
-This repository is a collection of my personal projects, coding challenges, and system design examples created to prepare for software engineering interviews.  
-It covers a variety of technologies and concepts commonly tested in technical interviews, including:
+# 🌟 My Technical Portfolio
 
-- **Java & Backend Development** (Spring Boot, REST APIs, Microservices)
-- **Databases** (SQL & NoSQL, optimization, schema design)
-- **System Design** (scalable architectures, high availability, cloud deployment)
-- **DevOps & Tools** (Docker, CI/CD, cloud services)
-- **Data Structures & Algorithms** (LeetCode-style problems, complexity analysis)
+This repository is a collection of my personal **React.js frontend projects** and **FastAPI backend projects**.  
+It showcases my skills in building interactive UIs, designing RESTful APIs, and integrating modern web technologies.
 
-The goal is to maintain a clean, organized, and professional showcase of skills for recruiters and hiring managers.
+- **React.js Frontend Projects** — component-based UI, props, state management, and AI integration in apps  
+- **FastAPI Backend Projects** — REST APIs, database integration with SQLAlchemy, modular architecture, and dummy data initialization  
+
+The goal is to maintain a **clean and organized portfolio** of full-stack projects that demonstrate my current capabilities in frontend and backend development.
