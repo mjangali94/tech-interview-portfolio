@@ -1,41 +1,68 @@
 import React from "react"
-import UserInfo from './UserInfo'
-import GetProgram from './GetProgram'
-export default function Main(){
-    const [info, setInfo] =React.useState()
-    const [infoEntered, setInfoEntered] =React.useState(false)
-    function setUserInfo(formData){
-        const gender = formData.get("gender")
-        const calories = formData.get("calories")
-        const exerciseInterests = formData.getAll("exercise_interests")
+export default function Main() {
+    const [meme, setMeme] =React.useState({
+        topText:"One does not simply",
+        bottomText:"Walk into Mordor",
+        imageUrl:"http://i.imgflip.com/1bij.jpg"
+        })
 
-        setInfo({
-                gender:gender,
-                calories:calories,
-                exerciseInterests:exerciseInterests
-            })
-        console.log(info)
-        setInfoEntered(true)
+    const [allMemes,setAllMemes] = React.useState([])
+    React.useEffect(()=>{
+        fetch("https://api.imgflip.com/get_memes")
+        .then(res => res.json())
+        .then(data => setAllMemes(data.data.memes))
+
+        },[])
+
+    React.useEffect(() => {
+        console.log(allMemes); // runs whenever allMemes changes
+    }, [allMemes]);
+
+    function handleChange(event){
+        const {value, name} = event.currentTarget
+        setMeme(prev => ({
+            ...prev,
+            [name] : value
+            }))
+        }
+
+    function getMeme(){
+        const randIndex=Math.floor(Math.random()*allMemes.length +1)
+        const meme=allMemes[randIndex]
+        setMeme(prev => ({
+            ...prev,
+            imageUrl:meme.url
+            }))
         }
     return (
-        <>
-            <form action={setUserInfo}>
-                <select name="gender" id="gender">
-                    <option>male</option>
-                    <option>female</option>
-                </select>
-                <input name="calories" id="calories" placeholder="enter your calories received"/>
+        <main>
+            <div className="form">
+                <label>Top Text
+                    <input
+                        type="text"
+                        placeholder="One does not simply"
+                        name="topText"
+                        onChange={handleChange}
+                        value={meme.topText}
+                    />
+                </label>
 
-                <label><input type="checkbox" name="exercise_interests" value="running" /> Running</label><br/>
-                <label><input type="checkbox" name="exercise_interests" value="swimming" /> Swimming</label><br/>
-                <label><input type="checkbox" name="exercise_interests" value="cycling" /> Cycling</label><br/>
-
-                <input type="submit" name="submit" />
-            </form>
-
-            {infoEntered && <UserInfo info={info}/>}
-            {infoEntered && <GetProgram info={info}/>}
-
-        </>
-        );
-    }
+                <label>Bottom Text
+                    <input
+                        type="text"
+                        placeholder="Walk into Mordor"
+                        name="bottomText"
+                        onChange={handleChange}
+                        value={meme.bottomText}
+                    />
+                </label>
+                <button onClick={getMeme}>Get a new meme image 🖼</button>
+            </div>
+            <div className="meme">
+                <img src={meme.imageUrl} />
+                <span className="top">{meme.topText}</span>
+                <span className="bottom">{meme.bottomText}</span>
+            </div>
+        </main>
+    )
+}
